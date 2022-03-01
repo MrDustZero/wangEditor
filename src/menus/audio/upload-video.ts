@@ -90,7 +90,12 @@ class UploadVideo {
                 errInfos.push(`【${uploadVideoAccept}】${t('uploadVideoAccept 不是Array')}`)
                 return
             }
-
+            if (UA.isIE()) {
+                if (name.split('.')[name.split('.').length - 1] !== 'mp3') {
+                    errInfos.push(`【${name}】${t('ie仅支持上传mp3')}`)
+                    return
+                }
+            }
             if (
                 !uploadVideoAccept.some(
                     item => item === name.split('.')[name.split('.').length - 1]
@@ -256,8 +261,16 @@ class UploadVideo {
                     'insertHTML',
                     `<p data-we-video-p="true"><audio src="${url}" controls></audio></p><p>&#8203</p>`
                 )
+            } else if (UA.isIE()) {
+                editor.cmd.do(
+                    'insertHTML',
+                    `<audio id='audio' controls><source type='audio/mp3' src="${url}"/></audio>`
+                )
             } else {
-                editor.cmd.do('insertHTML', `<audio src="${url}" controls></audio>${EMPTY_P}`)
+                editor.cmd.do(
+                    'insertHTML',
+                    `<p>hahah</p><audio src="${url}" controls></audio>${EMPTY_P}`
+                )
             }
         } else {
             // @ts-ignore

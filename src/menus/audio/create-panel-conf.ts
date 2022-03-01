@@ -10,17 +10,11 @@ import $ from '../../utils/dom-core'
 import UploadVideo from './upload-video'
 
 export default function (editor: Editor, video: string): PanelConf {
-    const config = editor.config
     const uploadVideo = new UploadVideo(editor)
 
     // panel 中需要用到的id
-    const inputIFrameId = getRandom('input-iframe')
-    const btnOkId = getRandom('btn-ok')
     const inputUploadId = getRandom('input-upload')
     const btnStartId = getRandom('btn-local-ok')
-
-
-
 
     // tabs配置
     // const fileMultipleAttr = config.uploadVideoMaxLength === 1 ? '' : 'multiple="multiple"'

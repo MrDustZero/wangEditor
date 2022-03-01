@@ -11,8 +11,6 @@ import { MenuActive } from '../menu-constructors/Menu'
 import createPanelConf from './create-panel-conf'
 import bindEvent from './bind-event/index'
 
-
-
 class Audio extends PanelMenu implements MenuActive {
     constructor(editor: Editor) {
         const $elem = $(
